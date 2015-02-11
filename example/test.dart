@@ -91,9 +91,12 @@ class Database {
 }
 
 main(List<String> arguments) {
-  String dbPath = '/tmp/test.sqlite';
-  new File(dbPath).deleteSync();
-  int nUsers = 5000;
+  String dbPath = './test.sqlite';
+  File dbFile = new File(dbPath);
+  if (dbFile.existsSync()) {
+    dbFile.deleteSync();
+  }
+  int nUsers = 100;
   int log = nUsers <= 100 ? 1 : 0;
 
   Database database = new Database(log);
